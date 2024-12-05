@@ -5,13 +5,15 @@
 
 class Tributaries{
     private:
-        string name;
-        bool lr;
-        int length;
-        double basinSize;
-        double avgDischarge;
-        string parentRiver;
-        bool isParent;
+        struct TributaryInfo{
+            string name;
+            string leftOrRight;
+            int length;
+            double basinSize;
+            double avgDischarge;
+            string parentRiver;
+            string isParent;
+        };
 
     public:
 

@@ -1,5 +1,5 @@
 #include "Tributaries.h"
-#include "Dam.h"
+#include "Dams.h"
 
 #include <iostream>
 
