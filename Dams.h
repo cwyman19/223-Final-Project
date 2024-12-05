@@ -11,6 +11,7 @@ class Dams{
             int capacity;
             int completionYear;
             string reservoirFormed;
+            string river;
         };
 
     public:
