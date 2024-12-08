@@ -27,14 +27,15 @@ private:
 
     TreeNode* root;
 
-    void insert(TreeNode*& node, TributaryInfo data);
+    void insert(TreeNode*& node, TributaryInfo data); // Private helper
     void inOrderTraversal(TreeNode* node);
+    void cleanup(TreeNode* node); // Helper for destructor
 
 public:
     Tributaries();
     ~Tributaries();
 
-    void insert(TributaryInfo data);
+    void insert(TributaryInfo data); // Public method
     void traverseInOrder();
 };
 

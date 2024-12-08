@@ -1,14 +1,19 @@
 #include "Tributaries.h"
-#include "Tributaries.cpp"
-#include <iostream>  // For std::cout
-#include <fstream>   // For file operations
-#include <sstream>   // For string stream
-#include <vector>    // For vector
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
-using namespace std;  // Optional: Allows direct use of cout, cin, etc.
+using namespace std;
 
-void loadFromCSV(Tributaries& tree, const string& filePath) {
+void loadFromCSV(Tributaries& tree) {
+    const string filePath = "Tributary_info_cleaned.csv"; // File in the same folder as the executable
     ifstream file(filePath);
+    if (!file.is_open()) {
+        cerr << "Error: Could not open file: " << filePath << endl;
+        return;
+    }
+
     string line, word;
     vector<string> row;
 
@@ -22,18 +27,34 @@ void loadFromCSV(Tributaries& tree, const string& filePath) {
 
         if (row.size() < 7) continue; // Skip invalid rows.
 
-        Tributaries::TributaryInfo info = { row[0], row[1], stoi(row[2]), stod(row[3]), stod(row[4]), row[5], row[6] };
-        tree.insert(info);
+        try {
+            // Convert string values to the correct data types with error handling
+            Tributaries::TributaryInfo info = {
+                row[0], // name
+                row[1], // leftOrRight
+                stoi(row[2]), // length, may throw std::invalid_argument
+                stod(row[3]), // basinSize
+                stod(row[4]), // avgDischarge
+                row[5], // parentRiver
+                row[6]  // isParent
+            };
+            tree.insert(info);
+        } catch (const std::invalid_argument& e) {
+            cerr << "Invalid data on line: " << line << " (" << e.what() << ")\n";
+        } catch (const std::out_of_range& e) {
+            cerr << "Value out of range on line: " << line << " (" << e.what() << ")\n";
+        }
     }
+
+    file.close();
 }
 
 int main() {
     Tributaries tree;
 
-    loadFromCSV(tree, "/mnt/data/Tributary_info_cleaned.csv");
+    loadFromCSV(tree);
     
-    // Output using std::cout
-    cout << "In-Order Traversal of Tributaries:" << endl;
+    cout << "\nIn-Order Traversal of Tributaries:\n";
     tree.traverseInOrder();
 
     return 0;
