@@ -1,4 +1,5 @@
 #include "Tributaries.h"
+#include "Tributaries.cpp"
 #include <iostream>  // For std::cout
 #include <fstream>   // For file operations
 #include <sstream>   // For string stream
