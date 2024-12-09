@@ -1,5 +1,5 @@
-#ifndef RIVERTREE_H
-#define RIVERTREE_H
+#ifndef RIVER_TREE_H
+#define RIVER_TREE_H
 
 #include <iostream>
 #include <string>
@@ -23,10 +23,13 @@ struct River {
     double length; // in km
     double basinSize; // in km²
     double avgDischarge; // in m³/s
+    std::string parent;
+    bool isParent;
+    bool isDams;
     std::vector<std::shared_ptr<Dam>> dams;
 
-    River(std::string n, std::string s, double l, double b, double a)
-        : name(std::move(n)), side(std::move(s)), length(l), basinSize(b), avgDischarge(a) {}
+    River(std::string n, std::string s, double l, double b, double a, std::string p, bool ip, bool id)
+        : name(std::move(n)), side(std::move(s)), length(l), basinSize(b), avgDischarge(a), parent(std::move(p)), isParent(ip), isDams(id) {}
 
     void addDam(const std::shared_ptr<Dam>& dam) {
         dams.push_back(dam);
@@ -46,14 +49,37 @@ private:
     std::shared_ptr<Node> root;
 
     void addRiverHelper(std::shared_ptr<Node>& node, const std::shared_ptr<River>& river) {
-        if (!node) {
-            node = std::make_shared<Node>(river);
-            return;
+        //std::cout << "Node River Parent: " << node->river->parent << std::endl;
+        //std::cout << "River Name: " << river->name << std::endl;
+        //std::cout << "River Side: " << river->side << std::endl;
+        if (node->left == nullptr && node->river->name == river->parent) {
+            if (river->side == "Left") {
+                std::cout << "addLeft" << std::endl;
+                std::cout << "River Name: " << river->name << std::endl;
+                std::cout << "----------------------------" << std::endl;
+                node->left = std::make_shared<Node>(river);
+                node->right = std::make_shared<Node>(node->river);
+                return;
+            } else {
+                std::cout << "addRight" << std::endl;
+                std::cout << "River Name: " << river->name << std::endl;
+                std::cout << "----------------------------" << std::endl;
+                node->right = std::make_shared<Node>(river);
+                node->left = std::make_shared<Node>(node->river);
+                return;
+            }
         }
-        if (river->name < node->river->name) {
+        else if (river->parent == node->river->name && node->left != nullptr) {
             addRiverHelper(node->left, river);
-        } else if (river->name > node->river->name) {
-            addRiverHelper(node->right, river);
+        } else if (river->parent != node->river->name)
+        {
+            if (node->left != nullptr) {
+                addRiverHelper(node->left, river);
+            }
+            else if (node->right != nullptr) {
+                //std::cout << "[right]";
+                addRiverHelper(node->right, river);
+            }
         }
     }
 
@@ -91,9 +117,15 @@ private:
 
 public:
     RiverTree() : root(nullptr) {}
+    
+    void initializeRoot() {
+        auto river = std::make_shared<River>("Columbia", "", 2000, 670000, 6650, "Columbia", true, true);
+        root = std::make_shared<Node>(river);
+    }
 
-    void addRiver(const std::string& name, const std::string& side, double length, double basinSize, double avgDischarge) {
-        auto river = std::make_shared<River>(name, side, length, basinSize, avgDischarge);
+    void addRiver(const std::string& name, const std::string& side, double length, double basinSize, double avgDischarge,
+    const std::string& parent, bool isParent, bool isDams) {
+        auto river = std::make_shared<River>(name, side, length, basinSize, avgDischarge, parent, isParent, isDams);
         addRiverHelper(root, river);
     }
 
@@ -131,6 +163,7 @@ public:
                 std::cout << "Options:\n";
                 std::cout << "1. Go to the left tributary: " << current->left->river->name << "\n";
                 std::cout << "2. Go to the right tributary: " << current->right->river->name << "\n";
+                std::cout << "3. Quit Program\n"; 
                 std::cout << "Enter 1 or 2 to choose: ";
 
                 int choice;
@@ -140,6 +173,8 @@ public:
                     current = current->left;
                 } else if (choice == 2) {
                     current = current->right;
+                } else if (choice == 3) {
+                    exit(1);
                 } else {
                     std::cout << "Invalid choice. Exiting traversal.\n";
                     break;
@@ -158,4 +193,4 @@ public:
     }
 };
 
-#endif // RIVERTREE_H
+#endif

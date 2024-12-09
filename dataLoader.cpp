@@ -16,19 +16,22 @@ void readTributaryData(const std::string& filename, RiverTree& tree) {
     int lineNumber = 0;
     for (const auto& row : data) {
         ++lineNumber;
-        if (row.size() < 5) {
+        if (row.size() < 8) {
             std::cerr << "Skipping line " << lineNumber << ": insufficient columns\n";
             continue;
         }
-
+        //std::cout << "row: " << row[0] << std::endl;
         try {
             std::string name = row[0];
             std::string side = row[1];
             double length = isNumeric(row[2]) ? std::stod(row[2]) : 0.0;
             double basinSize = isNumeric(row[3]) ? std::stod(row[3]) : 0.0;
             double avgDischarge = isNumeric(row[4]) ? std::stod(row[4]) : 0.0;
+            std::string parent = row[5];
+            bool isParent = (row[6] == "Yes") ? true:false;
+            bool isDams = (row[7] == "Yes") ? true:false;
 
-            tree.addRiver(name, side, length, basinSize, avgDischarge);
+            tree.addRiver(name, side, length, basinSize, avgDischarge, parent, isParent, isDams);
         } catch (const std::exception& e) {
             std::cerr << "Error processing line " << lineNumber << ": ";
             for (const auto& col : row) std::cerr << col << " ";
