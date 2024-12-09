@@ -1,18 +1,18 @@
 Name,Height,Capacity (MW),Year of completion,Reservoir formed,River
-Mica Dam,240 m (790 ft),"2,805",1973,Kinbasket Lake,Columbia
-Revelstoke Dam,175 m (574 ft),"2,480",1984,Revelstoke Lake,Columbia
+Mica Dam,240 m (790 ft),2805,1973,Kinbasket Lake,Columbia
+Revelstoke Dam,175 m (574 ft),2480,1984,Revelstoke Lake,Columbia
 Keenleyside Dam,52 m (171 ft),185,1968,Raised Arrow Lakes,Columbia
-Grand Coulee Dam,550 ft (170 m),"6,809",1941 / 1974,Franklin D. Roosevelt Lake,Columbia
-Chief Joseph Dam,236 ft (72 m),"2,620",1955,Rufus Woods Lake,Columbia
+Grand Coulee Dam,550 ft (170 m),6809,1941 / 1974,Franklin D. Roosevelt Lake,Columbia
+Chief Joseph Dam,236 ft (72 m),2620,1955,Rufus Woods Lake,Columbia
 Wells Dam,160 ft (49 m),840,1967,Lake Pateros,Columbia
-Rocky Reach Dam,130 ft (40 m),"1,287",1961,Lake Entiat,Columbia
+Rocky Reach Dam,130 ft (40 m),1287,1961,Lake Entiat,Columbia
 Rock Island Dam,135 ft (41 m),660,1933,Rock Island Pool,Columbia
-Wanapum Dam,185 ft (56 m),"1,092",1963,Lake Wanapum,Columbia
+Wanapum Dam,185 ft (56 m),1092,1963,Lake Wanapum,Columbia
 Priest Rapids Dam,178 ft (54 m),955.6,1961,Priest Rapids Lake,Columbia
-McNary Dam,183 ft (56 m),"1,133",1954,Lake Wallula,Columbia
-John Day Dam,184 ft (56 m),"2,485",1971,Lake Umatilla,Columbia
-The Dalles Dam,260 ft (79 m),"2,038",1957,Lake Celilo,Columbia
-Bonneville Dam,197 ft (60 m),"1,190",1937 / 1981,Lake Bonneville,Columbia
+McNary Dam,183 ft (56 m),1133,1954,Lake Wallula,Columbia
+John Day Dam,184 ft (56 m),2485,1971,Lake Umatilla,Columbia
+The Dalles Dam,260 ft (79 m),2038,1957,Lake Celilo,Columbia
+Bonneville Dam,197 ft (60 m),1190,1937 / 1981,Lake Bonneville,Columbia
 Jackson Lake Dam,65.5 ft (20.0 m),0,1911 / 1916 / 1989,Jackson Lake,Snake
 Palisades Dam,270 ft (82 m),176.6,1957,Palisades Reservoir,Snake
 Gem State Dam,40 ft (12 m),22.6,1982,,Snake
@@ -37,7 +37,7 @@ Goose Lake Dam (Goose Creek),26 ft (7.9 m),0,1924,Goose Lake,Salmon
 Brundage Dam (Brundage Creek(Goose Creek)),64 ft (20 m),0,1989,Brundage Reservoir,Salmon
 Wild Horse Dam,114 ft (35 m),0,1937 / 1969,Wild Horse Reservoir,Owyhee
 Antelope Reservoir Dam (Antelope Creek (Jordan Creek)),60 ft (18 m),0,1923,Antelope Reservoir,Owyhee
-Owyhee Dam,417 ft (127 m),"5,8,2",1932,Lake Owyhee,Owyhee
+Owyhee Dam,417 ft (127 m),582,1932,Lake Owyhee,Owyhee
 Wilson Reservoir Dam (Wilson Creek),34 ft (10 m),0,,Wilson Reservoir,Owyhee
 Bull Run Dam (Bull Run Creek),69 ft (21 m),0,,Bull Run Reservoir,Owyhee
 Dry Creek Dam (Indian Creek),70 ft (21 m),0,,Dry Creek Reservoir,Owyhee
@@ -109,7 +109,7 @@ Cabinet Gorge Dam,208 ft (63 m),255,1952,Cabinet Gorge Reservoir,Pend Oreille
 Pend Oreille,Pend Oreille,Pend Oreille,Pend Oreille,Pend Oreille,Pend Oreille
 Albeni Falls Dam,90 ft (27 m),42,1955,Raised Lake Pend Oreille 11.5 ft (3.5 m),Pend Oreille
 Box Canyon Dam,62 ft (19 m),90,1956,Box Canyon Reservoir,Pend Oreille
-Boundary Dam,340 ft (100 m),"1,040",1967,Boundary Lake,Pend Oreille
+Boundary Dam,340 ft (100 m),1040,1967,Boundary Lake,Pend Oreille
 Seven Mile Dam,79.2 m (260 ft),848,1979,,Pend Oreille
 Waneta Dam,75.9 m (249 ft),450,1954,,Pend Oreille
 Waneta Dam Expansion,75.9 m (249 ft),335,2015,,Pend Oreille
@@ -134,7 +134,6 @@ Bumping Lake Dam,60 ft (18 m),0,1910,Raised Bumping Lake,Bumping
 Clear Creek Dam (North Fork Tieton),83 ft (25 m),0,1915,Clear Lake,Tieton
 Tieton Dam,319 ft (97 m),0,1925,Rimrock Lake,Tieton
 Willamette Falls Dam,20 ft (6.1 m),15.18,1888,,Willamette
-North Santiam,North Santiam,North Santiam,North Santiam,North Santiam,Santiam
 Detroit Dam,463 ft (141 m),100,1953,Detroit Reservoir,Santiam
 Big Cliff Dam,191 ft (58 m),18,1953,Big Cliff Reservoir (reregulation for Detroit Reservoir),Santiam
 Green Peter Dam,327 ft (100 m),80,1968,Green Peter Reservoir,Santiam

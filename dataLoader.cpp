@@ -52,14 +52,14 @@ void readDamData(const std::string& filename, RiverTree& tree) {
         }
 
         try {
-            std::string riverName = row[0];
-            std::string damName = row[1];
-            std::string height = row[2];
-            int capacity = isNumeric(row[3]) ? std::stoi(row[3]) : 0;
-            int yearCompleted = isNumeric(row[4]) ? std::stoi(row[4]) : 0;
-            std::string reservoir = row[5];
+            std::string damName = row[0];
+            std::string height = row[1];
+            int capacity = isNumeric(row[2]) ? std::stoi(row[2]) : 0;
+            int yearCompleted = isNumeric(row[3]) ? std::stoi(row[3]) : 0;
+            std::string reservoir = row[4];
+            std::string riverName = row[5];
 
-            tree.addDam(riverName, damName, height, capacity, yearCompleted, reservoir);
+            tree.addDam(damName, height, capacity, yearCompleted, reservoir, riverName);
         } catch (const std::exception& e) {
             std::cerr << "Error processing line " << lineNumber << ": ";
             for (const auto& col : row) std::cerr << col << " ";
