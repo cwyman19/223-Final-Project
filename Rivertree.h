@@ -39,8 +39,9 @@ private:
         std::shared_ptr<River> river;
         std::shared_ptr<Node> left;
         std::shared_ptr<Node> right;
+        std::shared_ptr<Node> parent; // New parent pointer
 
-        explicit Node(std::shared_ptr<River> r) : river(std::move(r)), left(nullptr), right(nullptr) {}
+        explicit Node(std::shared_ptr<River> r) : river(std::move(r)), left(nullptr), right(nullptr), parent(nullptr) {}
     };
     std::vector<std::shared_ptr<Dam>> dams;
     std::shared_ptr<Node> root;
@@ -49,41 +50,36 @@ private:
         return true;
     }
     void addRiverHelper(std::shared_ptr<Node>& node, const std::shared_ptr<River>& river, std::shared_ptr<Node>& prev) {
-        //std::cout << "Node River Parent: " << node->river->parent << std::endl;
-        //std::cout << "River Name: " << river->name << std::endl;
-        //std::cout << "River Side: " << river->side << std::endl;
-        if (node->left == nullptr && node->river->name == river->parent) {
-            if (river->side == "Left") {
-                //std::cout << "addLeft" << std::endl;
-                //std::cout << "River Name: " << river->name << std::endl;
-                //std::cout << "----------------------------" << std::endl;
-                node->left = std::make_shared<Node>(river);
-                node->right = std::make_shared<Node>(node->river);
-                return;
-            } else {
-                //std::cout << "addRight" << std::endl;
-                //std::cout << "River Name: " << river->name << std::endl;
-                //std::cout << "----------------------------" << std::endl;
-                node->right = std::make_shared<Node>(river);
-                node->left = std::make_shared<Node>(node->river);
-                return;
-            }
+    if (!node) {
+        std::cerr << "Null node encountered.\n";
+        return;
+    }
+
+    if (node->left == nullptr && node->river->name == river->parent) {
+        if (river->side == "Left") {
+            node->left = std::make_shared<Node>(river);
+            node->left->parent = node; // Update parent pointer
+            node->right = std::make_shared<Node>(node->river);
+            node->right->parent = node; // Update parent pointer
+        } else {
+            node->right = std::make_shared<Node>(river);
+            node->right->parent = node; // Update parent pointer
+            node->left = std::make_shared<Node>(node->river);
+            node->left->parent = node; // Update parent pointer
         }
-        else if (river->parent == node->river->name && node->left != nullptr) {
+        return;
+    }
+
+    if (river->parent == node->river->name && node->left != nullptr) {
+        addRiverHelper(node->left, river, node);
+    } else if (river->parent != node->river->name) {
+        if (node->left != nullptr) {
             addRiverHelper(node->left, river, node);
-        } else if (river->parent != node->river->name)
-        {
-            if (node->left != nullptr) {
-                //std::cout << "[left]";
-                addRiverHelper(node->left, river, node);
-            }
-            else {
-                //std::cout << "[right]";
-                addRiverHelper(prev->right, river, node);
-            }
-            //else 
+        } else {
+            addRiverHelper(prev->right, river, node);
         }
     }
+}
 
     std::shared_ptr<Node> searchRiverHelper(const std::shared_ptr<Node>& node, const std::string& riverName) const {
         if (!node || node->river->name == riverName) {
@@ -134,11 +130,37 @@ public:
     }
 
     void addRiver(const std::string& name, const std::string& side, double length, double basinSize, double avgDischarge,
-    const std::string& parent, bool isParent, bool isDams) {
+        const std::string& parent, bool isParent, bool isDams) {
+        // std::cout << "Adding river: " << name << "\n";
+        // std::cout << "Parent: " << parent << "\n";
+
+        // Create the river
         auto river = std::make_shared<River>(name, side, length, basinSize, avgDischarge, parent, isParent, isDams);
+
+        // Find the parent location
         auto locationRoot = searchTreeDFS(root, parent);
-        addRiverHelper(locationRoot, river, locationRoot);
+        if (locationRoot == nullptr) {
+            std::cerr << "Error: Parent river '" << parent << "' not found in the tree.\n";
+            if (!isParent) {
+                std::cerr << "Cannot add tributary '" << name << "' without a valid parent.\n";
+                return;
+            } else {
+                // Handle creating a new root for parent if it's missing
+                std::cout << "Adding new root parent river: " << parent << "\n";
+                // Add the missing parent river
+                this->addRiver(parent, "Unknown", 0.0, 0.0, 0.0, "", true, false);
+                locationRoot = searchTreeDFS(root, parent); // Reattempt to find the parent
+            }
+        }
+
+        // Add the river
+        try {
+            addRiverHelper(locationRoot, river, locationRoot);
+        } catch (const std::exception& e) {
+            std::cerr << "Exception while adding river '" << name << "': " << e.what() << "\n";
+        }
     }
+
 
     bool addDam(const std::string& damName, const std::string& height, int capacity, int yearCompleted, const std::string& reservoir, const std::string& riverName) {
         auto dam = std::make_shared<Dam>(damName, height, capacity, yearCompleted, reservoir, riverName);
@@ -162,57 +184,60 @@ public:
     void interactiveTraversal() const {
         auto current = root;
         while (current) {
-            // Print the current river and its dams
             printRiver(current->river);
 
-            // Show two options if they exist
-            if (current->left && current->right) {
-                std::cout << "Options:\n";
+            // Show available options based on node connections
+            std::cout << "Options:\n";
+            if (current->left) {
                 std::cout << "1. Go to the left tributary: " << current->left->river->name << "\n";
+            }
+            if (current->right) {
                 std::cout << "2. Go to the right tributary: " << current->right->river->name << "\n";
-                std::cout << "3. See dams on this river\n";
-                std::cout << "4. Quit Program\n"; 
-                std::cout << "Enter 1, 2, 3, or 4 to choose: ";
+            }
+            if (current->parent) {
+                std::cout << "3. Go back to the parent river: " << current->parent->river->name << "\n";
+            }
+            std::cout << "4. View dams on this river\n";
+            std::cout << "5. Quit Program\n";
 
-                int choice;
-                std::cin >> choice;
+            // Input from the user
+            std::cout << "Enter your choice: ";
+            int choice;
+            std::cin >> choice;
 
-                if (choice == 1) {
-                    current = current->left;
-                } else if (choice == 2) {
-                    current = current->right;
-                } else if (choice == 3) {
-                    if (current->river->isDams) {
-                        std::cout << "The dams on the " << current->river->name << " River are: " << std::endl;
-                        for (int i = 0; i < dams.size(); i++) {
-                            if (dams[i]->river == current->river->name) {
-                                std::cout << "    - " << dams[i]->name << " (Height: " << dams[i]->height
-                                << ", Capacity: " << dams[i]->capacity << " MW, Completed: "
-                                << dams[i]->yearCompleted << ", Reservoir: " << dams[i]->reservoir << ")\n";
-                            }
-                        }
-                        std::cout << std::endl;
-                    } else {
-                        std::cout << "There are no dams on the " << current->river->name << " River" << std::endl << std::endl;
-                    }
-                } else if (choice == 4) {
-                    exit(1);
-                } else {
-                    std::cout << "Invalid choice. Exiting traversal.\n";
-                    break;
-                }
-            } else if (current->left) {
-                std::cout << "Only one option available: Go to the left tributary: " << current->left->river->name << "\n";
+            if (choice == 1 && current->left) {
                 current = current->left;
-            } else if (current->right) {
-                std::cout << "Only one option available: Go to the right tributary: " << current->right->river->name << "\n";
+            } else if (choice == 2 && current->right) {
                 current = current->right;
+            } else if (choice == 3 && current->parent) {
+                current = current->parent;
+            } else if (choice == 4) {
+                if (current->river->isDams) {
+                    std::cout << "Dams on the " << current->river->name << " River:\n";
+                    bool hasDams = false;
+                    for (const auto& dam : dams) {
+                        if (dam->river == current->river->name) {
+                            hasDams = true;
+                            std::cout << "  - " << dam->name << " (Height: " << dam->height
+                                    << ", Capacity: " << dam->capacity << " MW, Completed: "
+                                    << dam->yearCompleted << ", Reservoir: " << dam->reservoir << ")\n";
+                        }
+                    }
+                    if (!hasDams) {
+                        std::cout << "  No dams found for this river.\n";
+                    }
+                } else {
+                    std::cout << "No dams are associated with the " << current->river->name << " River.\n";
+                }
+            } else if (choice == 5) {
+                std::cout << "Exiting program.\n";
+                exit(0);
             } else {
-                std::cout << "No more tributaries. End of traversal.\n";
-                break;
+                std::cout << "Invalid choice. Please try again.\n";
             }
         }
     }
+
 };
 
 #endif

@@ -1,0 +1,103 @@
+Youngs,Right,43,257.6,14.7,Columbia,Yes,No
+Grays,Left,48,320,15.9,Columbia,No,No
+Elochoman,Left,24,490,10.8,Columbia,No,No
+Clatskanie,Right,40,269.2,10.6,Columbia,No,No
+Cowlitz,Left,169,"6,698",286.6,Columbia,Yes,Yes
+Kalama,Left,72,530,34.5,Columbia,No,No
+Lewis,Left,153,"2,709",173.4,Columbia,No,Yes
+Lake,Left,18,260,,Columbia,No,No
+Willamette,Right,301,"28,949","1,098.7",Columbia,Yes,Yes
+Washougal,Left,53,550,24.7,Columbia,No,No
+Sandy,Right,92,"1,316",65,Columbia,No,No
+Wind,Left,48,580,34.2,Columbia,No,No
+Little White Salmon,Left,31,350,,Columbia,No,No
+White Salmon,Left,71.3,"1,000",30.4,Columbia,No,No
+Hood,Right,40,720,27.6,Columbia,No,No
+Klickitat,Left,154.3,"3,496",44.5,Columbia,No,No
+Fifteenmile Creek,Right,87,970,5.6,Columbia,No,No
+Deschutes,Right,406,"27,549.6",215.7,Columbia,No,Yes
+John Day,Right,457,"20,521.3",80.4,Columbia,No,No
+Willow Creek,Right,127,"2,300",0.9,Columbia,No,No
+Umatilla,Right,143,"6,345",14,Columbia,No,No
+Walla Walla,Right,98,"4,553",34.3,Columbia,No,No
+Snake,Right,"1,735","260,938.7","1,755.6",Columbia,Yes,Yes
+Yakima,Left,344,"15,930.4",100.3,Columbia,Yes,Yes
+Crab Creek,Right,262,"13,200",40.4,Columbia,No,No
+Wenatchee,Left,85,"3,473.1",103.7,Columbia,No,Yes
+Entiat,Left,92,"1,210",20.2,Columbia,No,No
+Chelan,Left,6.6,"2,390",57.8,Columbia,No,Yes
+Methow,Left,129,"4,727",44.4,Columbia,No,No
+Okanogan,Left,185,"21,385.7",99,Columbia,No,No
+Nespelem,Left,,580.8,2.5,Columbia,No,No
+Sanpoil,Left,95,"2,540",11.4,Columbia,No,No
+Spokane,Right,179,"17,353.4",228.6,Columbia,No,Yes
+Colville,Right,97,"2,646.8",16.4,Columbia,No,No
+Kettle,Left,282,"10,877",82.3,Columbia,No,No
+Pend Oreille,Right,771,"67,055.5",850.2,Columbia,Yes,Yes
+Kootenay,Right,780,"50,298",868,Columbia,No,Yes
+Whatshan,Left,,581.4,12,Columbia,No,No
+Mosquito Creek,Left,,435,10.2,Columbia,No,No
+Kuskanax Creek,Right,,350.9,10.6,Columbia,No,No
+Halfway,Right,,447.4,14.2,Columbia,No,No
+Incomappleux,Right,,"1,020",55.8,Columbia,No,No
+Akolkolex,Right,,388.7,16.5,Columbia,No,No
+Illecillewaet,Right,62,"1,213.3",61.4,Columbia,No,No
+Jordan,Left,,345.6,11.1,Columbia,No,No
+Downie Creek,Right,,655.8,27.9,Columbia,No,No
+Goldstream,Right,,954.4,39.5,Columbia,No,No
+Big Mouth Creek,Right,,591.2,22.9,Columbia,No,No
+Canoe,Left,,712.6,15.2,Columbia,No,No
+Wood,Left,,841.7,18.1,Columbia,No,No
+Cummins,Left,,262.6,8.5,Columbia,No,No
+Kinbasket,Left,,261.3,7.6,Columbia,No,No
+Windy,Right,,252.3,10.2,Columbia,No,No
+Sullivan,Left,,632.5,18.9,Columbia,No,No
+Bush,Left,,"1,100.1",25.5,Columbia,No,No
+Gold,Right,,566.4,27.9,Columbia,No,No
+Beaver,Right,,"1,163",54.3,Columbia,No,No
+Bluewater,Left,,392.5,12.5,Columbia,No,No
+Waitabit Creek,Left,,352.2,9.6,Columbia,No,No
+Blaeberry,Left,60,745.6,17.8,Columbia,No,No
+Kicking Horse,Left,,"1,815.4",40.9,Columbia,No,No
+Canyon Creek,Right,,161.7,4.9,Columbia,No,No
+Spillimacheen,Right,118,"1,456.2",38,Columbia,No,Yes
+Bugaboo Creek,Right,,368.4,7.3,Columbia,No,No
+Forster Creek,Right,,592.4,8.8,Columbia,No,No
+Horsethief Creek,Right,,630.5,10,Columbia,No,No
+Toby Creek,Right,,673.5,9,Columbia,No,No
+Dutch Creek,Right,,676.5,7.9,Columbia,No,No
+Lewis and Clark,Right,32,160,,Youngs,No,No
+Wallooskee,Left,16,,,Youngs,No,No
+Klaskanine,Left,26,,,Youngs,No,No
+Coweeman,Right,58,520,,Cowlitz,No,No
+Toutle,Right,27.7,"1,320",59.3,Cowlitz,No ,No
+Clackamas,Left,134,"2,400",78,Willamette,Yes,No
+Oak Grove Fork,Left,34,320,13.8,Clackamas,No,No
+Collawash,Right,19,390,,Clackamas,No,No
+Tualatin,Right,184,"1,840",41.5,Willamette,No ,No
+Yamhill,Right,18,"2,170",,Willamette,No,No
+Santiam,Left,19,"4,700",218.4,Willamette,No,Yes
+Calapooia,Left,130,970,25.4,Willamette,No,No
+McKenzie,Left,140,"3,400",167.2,Willamette,No,Yes
+Coast Fork,Right,64,"1,720",44.1,Willamette,No,Yes
+Palouse,Left,267.9,"8,610",17.0,Snake,No,No
+Clearwater,Left,319.2,"24,420",420.8,Snake,No,Yes
+Grande Ronde,Right,338.7,"10,710",85.7,Snake,Yes,No
+Salmon,Left,684.7,"36,290",314.0,Snake,No,Yes
+Powder,Right,246,"4,150",15.1,Snake,No,Yes
+Payette,Left,262.4,"8,550",83.8,Snake,No,Yes
+Malheur,Right,331.2,"12,210",5.9,Snake,No,Yes
+Owyhee,Right,557.9,"28,380",26.0,Snake,Yes,Yes
+Boise,Left,250.4,"10,390",44.6,Snake,No,Yes
+Bruneau,Right,246.2,"8,530",10.6,Snake,No,No
+Malad,Left,239.9,"8,420",42.5,Snake,No,Yes
+Salmon Falls Creek,Right,245.7,"5,500",4.3,Snake,No,Yes
+Blackfoot,Right,217,"2,840",5.9,Snake,No,Yes
+Henrys Fork,Left,208.1,"8,450",59.7,Snake,Yes,Yes
+Jordan Creek,Left,159,"3,380",5.2,Owyhee,No,No
+West Little Owyhee,Right,101,800,0.51,Owyhee,No,No
+South Fork Malheur,Left,,,,Malheur,No ,No
+Wallowa,Left,89,"2,500",17,Grande Ronde,No,Yes
+Fall,Right,103,,,Henrys Fork,No,Yes
+Flathead,Left,254,"22,780",322,Pend Oreille,No,Yes
+Cle Elum,Right,45,,26.8,Yakima,No,Yes
