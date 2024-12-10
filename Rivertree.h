@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <cassert>
 
 struct Dam {
     std::string name;
@@ -51,7 +52,6 @@ private:
     }
     void addRiverHelper(std::shared_ptr<Node>& node, const std::shared_ptr<River>& river, std::shared_ptr<Node>& prev) {
     if (!node) {
-        std::cerr << "Null node encountered.\n";
         return;
     }
 
@@ -168,6 +168,10 @@ public:
         return true;
     }
 
+    std::vector<std::shared_ptr<Dam>> getDams() const {
+        return dams;
+    }
+
     std::shared_ptr<River> searchRiver(const std::string& riverName) const {
         auto riverNode = searchRiverHelper(root, riverName);
         return riverNode ? riverNode->river : nullptr;
@@ -183,6 +187,7 @@ public:
 
     void interactiveTraversal() const {
         auto current = root;
+
         while (current) {
             printRiver(current->river);
 
@@ -237,6 +242,8 @@ public:
             }
         }
     }
+
+    
 
 };
 
